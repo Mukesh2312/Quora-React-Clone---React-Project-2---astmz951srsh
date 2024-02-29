@@ -17,7 +17,7 @@ function Post() {
     }
     return (
         <div id='Post_section'>
-
+            <h2>Post</h2>
         </div>
     )
 }
