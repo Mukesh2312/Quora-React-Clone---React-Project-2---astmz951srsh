@@ -1,0 +1,19 @@
+#navbar{
+    width: 100%;
+    max-width: 1920px;
+    margin: auto;
+}
+.navbar_items_container{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.register {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+}

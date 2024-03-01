@@ -1,0 +1,7 @@
+#logo svg {
+  width: 100px;
+  height: auto;
+}
+.logo_fill{
+   fill: rgb(185,43,39);
+}

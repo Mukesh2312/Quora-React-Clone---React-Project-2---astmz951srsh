@@ -1,0 +1,43 @@
+#Post_section{
+    width: 40%;
+    margin: auto;
+}
+.auther_details_wrapper {
+    width: 100%;
+    margin: auto;
+    border: 1px solid #dee0e1;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+.auther_personal_details {
+    display: flex;
+    justify-content:  flex-start;
+    gap: 10px;
+    align-items: center;
+    padding: 20px 20px 0px;
+}
+.auther_img img {
+    width: 50px;
+    border-radius: 50%;
+}
+.auther_name small {
+    font-weight: 500;
+    color: #282829;
+}
+.author_post_text {
+    padding: 20px 20px 0px;
+    text-align: left;
+    line-height: 1.5;
+}
+.author_post_text_heading h4 {
+    font-size: 17px;
+    color: #282829;
+    margin: 0;
+}
+.author_post_text_body p{
+    margin-top: 0;
+}
+.author_post_img img {
+    width: 100%;
+    object-fit: contain;
+}
