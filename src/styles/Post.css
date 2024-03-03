@@ -41,3 +41,11 @@
     width: 100%;
     object-fit: contain;
 }
+.post_status_container {
+    display: flex;
+    gap: 10px;
+}
+.post_vote_wrapper {
+    display: flex;
+    gap: 10px;
+}
