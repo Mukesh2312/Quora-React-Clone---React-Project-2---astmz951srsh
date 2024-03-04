@@ -19,7 +19,7 @@ function Post() {
     }
     return (
         <div id='Post_section'>
-            <h2>Post</h2>
+            {/* <h2>Post</h2> */}
             <div className="post_content_container">
                 <PostCard post={post} />
             </div>
