@@ -43,15 +43,15 @@ function PostCard(props) {
                                 </div>
                                 <div className="post_status_container">
                                     <div className="post_vote_wrapper">
-                                        <div className="upvote">
+                                        <div className="upvote cmt">
                                             <Upvote />
 
                                         </div>
-                                        <div className="downvote">
+                                        <div className="downvote cmt">
                                             <Downvote />
                                         </div>
                                     </div>
-                                    <div className="post_comment">
+                                    <div className="post_comment cmt">
                                         <CommentIcon />
                                     </div>
                                 </div>
