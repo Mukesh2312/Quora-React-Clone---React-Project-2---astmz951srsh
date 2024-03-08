@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useUser } from './UserProvider'
 
 
 function Login() {
+    // const { singInUser } = useUser()
+    const navigate = useNavigate()
     const [getData, setData] = useState({
 
         email: '',
@@ -11,16 +15,19 @@ function Login() {
     })
 
 
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
 
-        axios.post('https://academics.newtonschool.co/api/v1/user/login',
+        await axios.post('https://academics.newtonschool.co/api/v1/user/login',
             getData, {
             header: {
                 'Content-Type': 'application/json',
             }
         }).then((Response) => {
+            localStorage.setItem('token', Response.data.token)
             console.log(Response.data.token, Response.data.status)
+            singInUser({ token: Response.data.token, status: Response.data.status })
+            navigate('/')
         }).catch((err) => {
             console.log(err)
         })

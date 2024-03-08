@@ -2,16 +2,35 @@ import React from 'react'
 import Upvote from './Upvote';
 import Downvote from './Downvote';
 import CommentIcon from './CommentIcon';
-
+import axios from 'axios';
+import { useUser } from './UserProvider';
 function PostCard(props) {
-    const { post } = props;
+    const { getUser } = useUser()
+    // console.log(getUser)
 
+    //⬆️⬆️⬆️liking the post ⬆️⬆️⬆️
+    const upvote = async (id) => {
+        console.log(id)
+        await axios.post(`https://academics.newtonschool.co/api/v1/quora/like/${id}`, null, {
+            headers: {
+                'Authorization': `Bearer ${getUser.token}`,
+
+            }
+        }).then((Response) => {
+            console.log(Response)
+        }).catch((err) => {
+            console.log(err)
+        })
+
+    }
+
+    const { post } = props;
     return (
         <div id='post-card'>
             {
                 post.map((pst, index) => {
                     return (
-                        <div className="auther_details_wrapper" key={index}>
+                        <div className="auther_details_wrapper" key={index} >
                             <div className="auther_personal_details">
 
                                 <div className="auther_img">
@@ -43,7 +62,7 @@ function PostCard(props) {
                                 </div>
                                 <div className="post_status_container">
                                     <div className="post_vote_wrapper">
-                                        <div className="upvote cmt">
+                                        <div className="upvote cmt" onClick={() => upvote(pst._id)}>
                                             <Upvote />
 
                                         </div>

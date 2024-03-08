@@ -17,6 +17,8 @@ function Post() {
             console.log(err)
         })
     }
+
+
     return (
         <div id='Post_section'>
             {/* <h2>Post</h2> */}

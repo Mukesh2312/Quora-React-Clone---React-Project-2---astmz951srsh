@@ -14,14 +14,7 @@ function App() {
     return config;
   })
 
-  // const questionHandler = async () => {
-  //   await axios.get('https://academics.newtonschool.co/api/v1/quora/post/',{body:{}}).then((Response) => {
-  //     console.log(Response.data.data)
-  //     setPost(Response.data.data)
-  //   }).catch((err) => {
-  //     console.log(err)
-  //   })
-  // }
+
   return (
     <div className="App">
       <Router>
