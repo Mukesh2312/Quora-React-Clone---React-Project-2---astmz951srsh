@@ -24,10 +24,10 @@ function Login() {
                 'Content-Type': 'application/json',
             }
         }).then((Response) => {
+            navigate('/')
             localStorage.setItem('token', Response.data.token)
             console.log(Response.data.token, Response.data.status)
             singInUser({ token: Response.data.token, status: Response.data.status })
-            navigate('/')
         }).catch((err) => {
             console.log(err)
         })

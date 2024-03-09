@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Upvote from './Upvote';
 import Downvote from './Downvote';
 import CommentIcon from './CommentIcon';
@@ -8,12 +8,15 @@ function PostCard(props) {
     const { getUser } = useUser()
     // console.log(getUser)
 
+    const [isOpen, setIsOpen] = useState(false)
+    const [comments, setComments] = useState([])
+
     //⬆️⬆️⬆️liking the post ⬆️⬆️⬆️
     const upvote = async (id) => {
-        console.log(id)
+        // console.log(id)
         await axios.post(`https://academics.newtonschool.co/api/v1/quora/like/${id}`, null, {
             headers: {
-                'Authorization': `Bearer ${getUser.token}`,
+                'Authorization': `Bearer ${getUser?.token}`,
 
             }
         }).then((Response) => {
@@ -24,13 +27,48 @@ function PostCard(props) {
 
     }
 
+
+    //⬇️⬇️⬇️disliking the post⬇️⬇️⬇️
+
+    const downvote = async (id) => {
+        // console.log(id)
+        await axios.delete(`https://academics.newtonschool.co/api/v1/quora/like/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${getUser?.token}`
+
+            }
+        }).then((Response) => {
+            console.log(Response)
+
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+    const commentsHandler = async (id) => {
+        try {
+            await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${id}/comments`, {
+                headers: {
+                    'Authorization': `Bearer ${getUser?.token}`
+                }
+            }).then((Response) => {
+                // console.log(Response.data.data);
+                const data = Response.data.data
+                setComments(data)
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    console.log(comments)
     const { post } = props;
     return (
         <div id='post-card'>
             {
                 post.map((pst, index) => {
                     return (
-                        <div className="auther_details_wrapper" key={index} >
+                        <div className="auther_details_wrapper" key={index} title='post'>
                             <div className="auther_personal_details">
 
                                 <div className="auther_img">
@@ -66,14 +104,17 @@ function PostCard(props) {
                                             <Upvote />
 
                                         </div>
-                                        <div className="downvote cmt">
+                                        <div className="downvote cmt" onClick={() => downvote(pst._id)}>
                                             <Downvote />
                                         </div>
                                     </div>
-                                    <div className="post_comment cmt">
+                                    <div className="post_comment cmt" onClick={() => commentsHandler(pst._id)} >
                                         <CommentIcon />
                                     </div>
                                 </div>
+                                {/* <div className="post_comment_container">
+
+                                </div> */}
                             </div>
                         </div>
                     )
