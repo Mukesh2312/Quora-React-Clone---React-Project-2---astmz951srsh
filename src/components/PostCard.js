@@ -12,38 +12,9 @@ function PostCard(props) {
     const [comments, setComments] = useState([])
 
     //⬆️⬆️⬆️liking the post ⬆️⬆️⬆️
-    const upvote = async (id) => {
-        // console.log(id)
-        await axios.post(`https://academics.newtonschool.co/api/v1/quora/like/${id}`, null, {
-            headers: {
-                'Authorization': `Bearer ${getUser?.token}`,
-
-            }
-        }).then((Response) => {
-            console.log(Response)
-        }).catch((err) => {
-            console.log(err)
-        })
-
-    }
 
 
-    //⬇️⬇️⬇️disliking the post⬇️⬇️⬇️
 
-    const downvote = async (id) => {
-        // console.log(id)
-        await axios.delete(`https://academics.newtonschool.co/api/v1/quora/like/${id}`, {
-            headers: {
-                'Authorization': `Bearer ${getUser?.token}`
-
-            }
-        }).then((Response) => {
-            console.log(Response)
-
-        }).catch((err) => {
-            console.log(err)
-        })
-    }
 
     const commentsHandler = async (id) => {
         try {
@@ -100,21 +71,23 @@ function PostCard(props) {
                                 </div>
                                 <div className="post_status_container">
                                     <div className="post_vote_wrapper">
-                                        <div className="upvote cmt" onClick={() => upvote(pst._id)}>
-                                            <Upvote />
+                                        <div className="upvote cmt" >
+                                            <Upvote id={pst._id} />
 
                                         </div>
-                                        <div className="downvote cmt" onClick={() => downvote(pst._id)}>
-                                            <Downvote />
+                                        <div className="downvote cmt" >
+                                            <Downvote id={pst._id} />
                                         </div>
                                     </div>
-                                    <div className="post_comment cmt" onClick={() => commentsHandler(pst._id)} >
-                                        <CommentIcon />
+                                    <div className="post_comment cmt"  >
+                                        <CommentIcon id={pst._id} />
                                     </div>
                                 </div>
-                                {/* <div className="post_comment_container">
-
-                                </div> */}
+                                {
+                                    !isOpen && <div className="post_comment_container">
+                                        comment section
+                                    </div>
+                                }
                             </div>
                         </div>
                     )
