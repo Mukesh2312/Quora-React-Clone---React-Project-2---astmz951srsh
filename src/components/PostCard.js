@@ -17,14 +17,16 @@ function PostCard(props) {
 
 
     const commentsHandler = async (id) => {
+
         try {
-            await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${id}/comments`, {
+            await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${id}/comments`, null, {
                 headers: {
                     'Authorization': `Bearer ${getUser?.token}`
                 }
             }).then((Response) => {
                 // console.log(Response.data.data);
                 const data = Response.data.data
+                setIsOpen(!isOpen)
                 setComments(data)
             })
         } catch (error) {
@@ -79,12 +81,12 @@ function PostCard(props) {
                                             <Downvote id={pst._id} />
                                         </div>
                                     </div>
-                                    <div className="post_comment cmt"  >
+                                    <div className="post_comment cmt" onClick={() => commentsHandler(pst._id)} >
                                         <CommentIcon id={pst._id} />
                                     </div>
                                 </div>
                                 {
-                                    !isOpen && <div className="post_comment_container">
+                                    isOpen && <div className="post_comment_container">
                                         comment section
                                     </div>
                                 }
