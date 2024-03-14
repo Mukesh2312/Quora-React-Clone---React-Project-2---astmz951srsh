@@ -24,7 +24,7 @@ function PostCard(props) {
                     'Authorization': `Bearer ${getUser?.token}`
                 }
             }).then((Response) => {
-                // console.log(Response.data.data);
+                console.log(Response.data.data);
                 const data = Response.data.data
                 setIsOpen(!isOpen)
                 setComments(data)
@@ -87,7 +87,18 @@ function PostCard(props) {
                                 </div>
                                 {
                                     isOpen && <div className="post_comment_container">
-                                        comment section
+                                        <div className="comments_wrapper">
+                                            {
+                                                comments && comments.map((comment, index) => {
+                                                    return (
+                                                        <div className="comments" key={index}>
+                                                            <h3>{comment.author}</h3>
+                                                            <p>{comment.content}</p>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
                                     </div>
                                 }
                             </div>
