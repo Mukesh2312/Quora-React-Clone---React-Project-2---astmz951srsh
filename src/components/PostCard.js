@@ -34,8 +34,11 @@ function PostCard(props) {
         }
     }
 
+
+
     console.log(comments)
     const { post } = props;
+
     return (
         <div id='post-card'>
             {
